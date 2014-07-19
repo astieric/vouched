@@ -1,0 +1,43 @@
+.main-content.grid_4.alpha
+  %header
+    %ul{:class => "action-buttons clearfix fr"}
+      %li
+        %a
+    %h2
+      Confirmed Identities
+
+
+  %section
+    %table
+      %tr
+        %th Type
+        %th Name
+        %th Handle
+        %th
+        %th
+
+      - @identities.each do |identity|
+        %tr
+          %td= image_tag "/images/3rdparty/#{identity.provider.name}_32.png", :size => "32x32"
+          %td= identity.name
+          %td= identity.handle
+          %td= link_to_edit edit_identity_path(identity)
+          %td= link_to_destroy identity
+
+
+.preview-pane.grid_3.omega
+  .content
+    %h3 
+      Add another Identity to your account:
+    = link_to image_tag('/images/3rdparty/email_32.png',     :size => "32x32", :alt => 'E-Mail')    + " E-Mail",    new_confirmation_path(:identity)
+    = link_to image_tag('/images/3rdparty/twitter_32.png',   :size => "32x32", :alt => 'Twitter')   + " Twitter",   "/auth/twitter"
+    = link_to image_tag('/images/3rdparty/facebook_32.png',  :size => "32x32", :alt => 'Facebook')  + " Facebook",  "/auth/facebook"
+    = link_to image_tag('/images/3rdparty/open_id_32.png',   :size => "32x32", :alt => 'OpenID')    + " OpenID",    "/auth/open_id"
+    = link_to image_tag('/images/3rdparty/github_32.png',    :size => "32x32", :alt => 'Github')    + " Github",    "/auth/github"
+    = link_to image_tag('/images/3rdparty/linked_in_32.png', :size => "32x32", :alt => 'Linked In') + " Linked In", "/auth/linked_in"
+
+  .preview
+
+
+
+

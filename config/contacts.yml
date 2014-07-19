@@ -1,0 +1,6 @@
+windows_live:
+  appid: 000000004004141A
+  secret: iUDv2hbkAjUIPf1uPikFkjSmRPmqUbSM
+  security_algorithm: wsignin1.0
+  return_url: http:/getvouched.com/contacts/new
+  policy_url: http:/getvouched.com/privacy

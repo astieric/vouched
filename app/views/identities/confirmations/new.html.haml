@@ -1,0 +1,12 @@
+.main-content.grid_7.alpha
+  %header
+    %h2 Send confirmation instructions
+
+  %section
+    = semantic_form_for(resource, :as => resource_name, :url => confirmation_path(resource_name),  :html => {:class => "form grid_4"}) do |form| 
+      = devise_error_messages!
+      = form.inputs do
+        = form.input :email, :label => 'Email'
+        .action
+          = form.commit_button :button_html => { :class => "button button-green"}, :label => "Send confirmation instructions"
+

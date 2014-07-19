@@ -1,0 +1,162 @@
+.main-content
+  %header
+    %ul{:class => "action-buttons clearfix fr"}
+      %li
+        %a
+    %h2
+      Welcome to Vouched!
+
+  .two-thirds
+    %h1 Social proof to back up your claims.
+    - if user_signed_in?
+      %h2 Get Started
+      %ol
+        %li
+          Confirm your
+          %a{:href => "/identities"} Identities
+          to start collecting vouches
+        %li
+          = link_to "Vouch", user_vouches_path(current_user)
+          for yourself
+        %li
+          Add or Import your
+          %a{:href => "/contacts"} Contacts
+        %li
+          = link_to "Request", new_polymorphic_path([current_user, Vouch.new], :view => "pending")
+          vouches from others
+    - else
+      %h2
+        Get
+        %a{:href => "/users/register"} Vouched
+  .one-third
+    .sideBox.paddedSideBox
+      %h1.title{:style => "margin-bottom:0;"}
+        %b= @grantorcount
+        users have vouched 
+        %b= @vouchcount
+        times for 
+        %b= @requestercount
+        people
+  .clear
+  .one-third.promotions
+    %h1
+      Newcomers
+    %ul
+      %li
+        %a{ :href => "%"}
+          *Ifesdjeen 
+        signed up 
+        %b
+          5 hours ago
+      %li
+        %a{ :href => "%"}
+          *Whateva
+        signed up 
+        %b
+          5 hours ago
+      %li
+        %a{ :href => "%"}
+          *Guy_loller
+        signed up 
+        %b
+          5 hours ago
+        %b
+          5 hours ago
+      %li
+        %a{ :href => "%"}
+          *Some_name 
+        signed up 
+        %b
+          5 hours ago
+      %li
+        %a{ :href => "%"}
+          *Ifesdjeen 
+        signed up 
+        %b
+          5 hours ago
+  .one-third.promotions
+    %h1
+      Got vouched!
+    %ul
+      %li
+        %a{ :href => "%"}
+          Jasonasdf 
+        got vouched for
+        %a{ :href => "%"}
+          Ruby on Rails
+      %li
+        %a{ :href => "%"}
+          Larrys 
+        got vouched for
+        %a{ :href => "%"}
+          Ruby on Rails
+      %li
+        %a{ :href => "%"}
+          Tombyas
+        got vouched for
+        %a{ :href => "%"}
+          Java
+      %li
+        %a{ :href => "%"}
+          Other_guy
+        got vouched for
+        %a{ :href => "%"}
+          Scala
+      %li
+        %a{ :href => "%"}
+          Clojurist
+        got vouched for
+        %a{ :href => "%"}
+          Clojure
+      %li
+        %a{ :href => "%"}
+          Whoever
+        got vouched for
+        %a{ :href => "%"}
+          Oracle
+  .one-third.promotions
+    %h1
+      Active vouchers
+    %ul
+      %li
+        %a{ :href => "%"}
+          Clojurist 
+        vouched
+        %b
+          50
+        times
+      %li
+        %a{ :href => "%"}
+          Other_guy
+        vouched
+        %b
+          60
+        times
+      %li
+        %a{ :href => "%"}
+          Other_guy
+        vouched
+        %b
+          43
+        times
+      %li
+        %a{ :href => "%"}
+          Some_name
+        vouched
+        %b
+          22
+        times
+      %li
+        %a{ :href => "%"}
+          Other_name
+        vouched
+        %b
+          13
+        times
+      %li
+        %a{ :href => "%"}
+          Thirteen
+        vouched
+        %b
+          14
+        times

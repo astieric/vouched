@@ -1,0 +1,47 @@
+%p
+  %b Jigsawid:
+  = @company.jigsawid
+%p
+  %b Name:
+  = @company.name
+%p
+  %b Website:
+  = @company.website
+%p
+  %b Phone:
+  = @company.phone
+%p
+  %b Address:
+  = @company.address
+%p
+  %b City name:
+  = @company.city_name
+%p
+  %b State:
+  = @company.state
+%p
+  %b Zip:
+  = @company.zip
+%p
+  %b Country name:
+  = @company.country_name
+%p
+  %b Industry:
+  = @company.industry_id
+%p
+  %b Subindustry:
+  = @company.subindustry_id
+%p
+  %b City:
+  = @company.city_id
+%p
+  %b Region:
+  = @company.region_id
+%p
+  %b Country:
+  = @company.country_id
+
+= show_to :admin do
+  = link_to 'Edit', edit_company_path(@company)
+  \|
+  = link_to 'Back', companies_path

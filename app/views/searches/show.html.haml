@@ -1,0 +1,15 @@
+%div{:class => "main-content #{user_signed_in? ? "grid_7" : "grid_8"} alpha"}
+  %header
+    %h2 Search
+
+  %section
+    - if (@search.total >  0)
+      %h4== Displaying results #{(@search.hits.current_page - 1) * @search.hits.per_page + [@search.total, 1].min } - #{[@search.hits.current_page * @search.hits.per_page, @search.total].min} of #{@search.total}
+      %ul.searchResults
+        - @search.each_hit_with_result do |hit, result|
+          %li
+            = render result.search_type, result.search_type.to_sym => result
+      .pagination= will_paginate(@search.hits)
+      %br
+    - else
+      %h4== Your query returned no results.

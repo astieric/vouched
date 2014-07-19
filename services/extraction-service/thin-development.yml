@@ -1,0 +1,11 @@
+---
+address: localhost
+port: 7100
+servers: 1
+max_conns: 1024
+max_persistent_conns: 512
+timeout: 30
+environment: development
+pid: tmp/pids/thin-development.pid
+log: log/thin-development.log
+daemonize: true

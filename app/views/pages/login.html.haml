@@ -1,0 +1,20 @@
+.login-top
+  .container
+    .left
+      %img{:alt => "lock and key", :height => "110", :src => "/images/icons/lock-and-key-110.png", :width => "110"}/
+    .middle
+      = semantic_form_for 'user', :url => "/users/login", :html => { :id => "user_login" } do |f|
+        %h2 
+          Sign in to your account.
+        %ul
+          = f.input :username, :label => false
+          = f.input :password, :label => false
+          = f.submit "Login"
+          = f.input :remember_me, :as => :boolean, :required => false
+      .forgot_password
+        %a{:href => "/users/password/new"} Forgot your password?
+    .right
+      %h1.register
+        Not a member yet?
+        %span{:onClick => "window.location='http://getvouched.com/users/register'", :type => "button"} Register now and get started.
+ 

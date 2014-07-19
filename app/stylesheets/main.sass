@@ -1,0 +1,939 @@
+/* 960 Grid System ~ Core CSS.
+ * Learn more ~ http://960.gs/
+ * *
+ * Licensed under GPL and MIT.
+
+@import compass/reset
+@import 960/grid
+
+=radius(!radius)
+  -moz-border-radius = !radius
+  -webkit-border-radius = !radius
+
+$head-bg: #2C2C2C
+
+body
+  font: 13px/1.4 "Trebuchet MS", Arial, Helvetica, sans-serif
+  color: #494949
+  background: url("/images/gradient_top.gif") repeat-x #ffffff
+  background-position: 30px 70px
+.header
+  height: 60px
+  background: $head-bg
+  padding-top: 10px
+  .wrapper
+    +grid-system(12)
+    position: relative
+    .logo
+      +grid-unit-base
+      +grid-width(5)
+      top: 10px
+      left: 170px
+      background: url("/images/logo_sma.png") no-repeat scroll 0 0 transparent
+      display: block
+      height: 107px
+      width: 300px
+    .user-account
+      position: absolute
+      right: 0
+      top: 0
+      width: 200px
+      ul
+        li
+          float: left
+    .search
+      position: absolute
+      top: 30px
+      left: 160px
+      float: right
+      width: 480px
+      height: 26px
+      background: #3f3f3f
+      +radius(13px)
+      input
+        border: none
+        background: transparent
+        font-size: 12px
+        color: #666666
+        margin-top: 5px
+        margin-left: 16px
+      input#SearchSubmit
+        background: url("/images/search.png") no-repeat transparent
+        width: 16px
+        height: 16px
+        float: right
+        margin-right: 10px
+    .search:hover
+      background-position: 0 -32px
+    .searchActive
+      background-position: 0 -64px
+      cursor: pointer
+
+.header_line
+  height: 25px
+  width: 100%
+
+.container_16
+  +grid-system(16)
+
+// But most compass users prefer to construct semantic layouts like so (two column layout with header and footer):
+
+$ninesixty-columns: 24
+
+=radius(!radius)
+  -moz-border-radius = !radius
+  -webkit-border-radius = !radius
+
+=shadow(!shadow_properties)
+  -moz-box-shadow = !shadow_properties
+
+=content_area_background
+  background-color: #f4f5f6
+.main
+  margin-top: 25px
+  +grid-container
+  padding-bottom: 30px
+.one-third,
+.two-thirds,
+.one-half
+  +grid-unit-base
+.one-third
+  +grid-width(8)
+.one-half
+  +grid-width(12)
+.two-thirds
+  +grid-width(15)
+  margin-left: 40px
+/*** Primary Style Sheet for Theme **
+
+.footer
+  background-color: $head-bg
+  color: #8F8F8F
+  height: 110px
+  padding-top: 30px
+  .foot_wrapper
+    +grid-container
+    .with-rule
+      background: url("/images/footerBg-verticalRule.gif") repeat-y scroll 100% 0 transparent
+    .logoMark
+      /* logo symbol in footer
+      width: 95px
+      height: 70px
+      background: transparent url("/images/logoSymbol-small.png") no-repeat 0 0
+      float: right
+      margin-top: -55px
+      margin-right: 10px
+    a
+      -webkit-transition-duration: 0.33s
+      -webkit-transition-property: color, background, text-shadow
+      &:hover, &:active
+        color: #f0f0f0
+    h1, h2, h3, h4, h5, h6
+      color: #eee
+    p
+      margin: 0 0 1em
+    .top
+      +grid-unit-base
+      height: 2px
+      overflow: hidden
+      background: transparent url("/images/footerBg-top.png") no-repeat 0 0
+    .main
+      padding-top: 20px
+
+
+/* Added to extend background all the way down on short pages
+
+#Wrapper
+  background: #e8ebec url("/images/bodyBg.gif") repeat-x 0 0
+
+/* The body of the design
+
+/* links
+
+a
+  color: #76A119
+  text-decoration: none
+  &:link, &:visited
+    color: #76A119
+    text-decoration: none
+  &:hover, &:active
+    color: #d00044
+    text-decoration: none
+
+
+.ribbon
+  span a
+    font-weight: bold
+  .scrollTop
+    float: right
+    margin: 19px 28px
+    font-weight: normal
+    font-size: 0.8em
+
+/* scroll to top ^
+
+/* headings
+
+h1, h2, h3, h4, h5, h6, .headline, .title, .ribbon span, #fancy_title div
+  text-shadow: 0px 1px 0 #E0E4F0
+  font-family: "Liberation Sans", Arial, Helvetica, Garuda, sans-serif
+  font-weight: normal
+  line-height: 1
+  margin: 0 0 0.5em
+  padding: 0 0 0.2em
+  color: #333333
+
+h1
+  font-size: 1.85em
+
+h2
+  font-size: 1.5em
+
+h3
+  font-size: 1.35em
+  margin-bottom: 0.5em
+
+h4
+  font-size: 1.2em
+  margin-bottom: 0.5em
+  border-bottom: none
+
+h5
+  font-size: 1em
+  font-weight: bold
+  margin-bottom: 0.5em
+  border-bottom: none
+
+h6
+  font-size: 1em
+  font-weight: lighter
+  text-transform: uppercase
+  margin-bottom: 0.5em
+  border-bottom: none
+
+.headline
+  color: #595959
+
+.title
+  padding: 0
+
+h1 strong, h2 strong, h3 strong, h4 strong, h5 strong, h6 strong, .headline strong, .title strong
+  font-weight: bold
+  color: #555555
+  text-shadow: 0px 1px 0 #fff
+h1 span, h2 span, h3 span, h4 span, h5 span, h6 span, .headline span, .title span
+  display: block
+  color: #8F8F8F
+  font-size: 0.6em
+  margin: -0.1em 0 0
+
+
+
+/* text
+
+blockquote
+  margin: 0 0 18px 4px
+  padding: 0 16px
+  font-style: italic
+  border-left: 5px solid #bbb
+
+code, pre
+  font: normal 13px/18px Consolas, "Courier New", Courier, monospace
+  background: #e8ebec url("/images/pre-bg.gif") repeat 0 0
+  padding: 18px 5px
+  border: 1px dotted #bbb
+  color: #333
+
+code
+  padding: 1px 3px
+  background-image: none
+
+sup
+  bottom: 0.1em
+
+.impact
+  font-size: 1.1em
+  line-height: 1.5
+
+.noMargin
+  margin: 0
+
+.ribbon span
+  float: left
+  font-size: 1.4em
+  font-weight: bold
+  margin: 16px 0 0
+  color: #CDCDCD
+  &.blogDate
+    font-size: 1.85em
+    margin: 13px 0 0
+  &.blogPostInfo
+    float: right
+    font-size: 1.1em
+    font-weight: normal
+    margin: 18px 28px 0 0
+
+.breadcrumbs span
+  font: bold 1.2em Arial, Helvetica, Garuda, sans-serif
+
+#ContentPanel, #cluetip
+  color: #8F8F8F
+
+#Copyright
+  font-size: 0.9em
+  margin: 0 0 0 11px
+  p
+    margin: 0
+    padding: 0 0 1em
+
+/* Lists
+
+ul
+  margin: 0 0 20px 5px
+
+ol
+  margin: 0 0 20px 5px
+  padding-left: 2em
+
+ul ul, ol ol, ul ol, ol ul
+  margin-top: 8px
+
+ul li, ol li
+  line-height: 1.3em
+  padding: 3px 5px
+
+ul li
+  padding-left: 15px
+
+ol li
+  list-style-type: decimal
+  list-style-position: outside
+
+/* custom list styles
+
+/* bullet types
+/* ul li 						{ background: transparent url("/images/bullets/dot_gray.gif") no-repeat 0 .6em;}
+
+/* default list style
+
+ul
+  &.bullet-black li
+    background: transparent url("/images/bullets/dot_black.gif") no-repeat 0 0.6em
+  &.bullet-gray li
+    background: transparent url("/images/bullets/dot_gray.gif") no-repeat 0 0.6em
+  &.bullet-silver li
+    background: transparent url("/images/bullets/dot_gray_light.gif") no-repeat 0 0.6em
+  &.bullet-blue li
+    background: transparent url("/images/bullets/dot_blue.gif") no-repeat 0 0.6em
+  &.bullet-green li
+    background: transparent url("/images/bullets/dot_green.gif") no-repeat 0 0.6em
+  &.bullet-orange li
+    background: transparent url("/images/bullets/dot_orange.gif") no-repeat 0 0.6em
+  &.bullet-red li
+    background: transparent url("/images/bullets/dot_red.gif") no-repeat 0 0.6em
+  &.bullet-disc-black li
+    background: transparent url("/images/bullets/circle_black.gif") no-repeat 0 0.6em
+  &.bullet-disc-gray li
+    background: transparent url("/images/bullets/circle_gray.gif") no-repeat 0 0.6em
+  &.bullet-disc-silver li
+    background: transparent url("/images/bullets/circle_gray_light.gif") no-repeat 0 0.6em
+  &.bullet-disc-blue li
+    background: transparent url("/images/bullets/circle_blue.gif") no-repeat 0 0.6em
+  &.bullet-disc-green li
+    background: transparent url("/images/bullets/circle_green.gif") no-repeat 0 0.6em
+  &.bullet-disc-orange li
+    background: transparent url("/images/bullets/circle_orange.gif") no-repeat 0 0.6em
+  &.bullet-disc-red li
+    background: transparent url("/images/bullets/circle_red.gif") no-repeat 0 0.6em
+  &.bullet-check li
+    background: transparent url("/images/bullets/check.gif") no-repeat 0 0.2em
+    padding-left: 20px
+
+/* numbered list with styling
+
+ol.number-pad
+  padding: 3px 5px 5px 22px
+  border-left: 1px solid #E9E9E9
+  background: white url("/images/bullets/ordered-background.gif") repeat-y 0 0
+  ol, ul
+    background: none
+    margin-left: 18px
+  li
+    padding-left: 10px
+    border-bottom: 1px dotted #D6D6D6
+
+/* list with image, title and description
+
+ul
+  &.post-list
+    margin-left: 0
+    li
+      margin: 0 0 1em
+      padding: 0
+      background: none
+      border-bottom: 1px dotted #D6D6D6
+      font-size: 85%
+      img
+        float: left
+        margin: 0 8px 1em 0
+        border: 1px solid #C6C6C6
+      a
+        display: block
+        font-weight: bold
+        margin-bottom: .3em
+  &.horizList
+    margin: 0 0 1em
+    li
+      display: inline
+      margin: 0
+      padding: 0
+      background: none
+  &.socialLinks
+    height: 25px
+    margin: 1em 22px -16px
+    li a
+      display: block
+      float: right
+      height: 24px
+      overflow: hidden
+      padding: 0 3px 0 2px
+      &:hover, &:active
+        height: 29px
+        margin-top: -5px
+
+/* horizontal lists
+
+/* socail network horizontal list (used in footer)
+
+/* forms and inputs
+
+
+.login-top
+  color: #8F8F8F
+  background: #2C2C2C
+  border-bottom: 1px solid #fff
+  height: 160px
+  padding-top: 20px
+  position: relative
+  .hide_login
+    background: url("/images/fancybox/smallClose-dark.png") repeat scroll 0 0 transparent
+    margin: 10px
+    overflow: hidden
+    text-indent: -999px
+    width: 36px
+    height: 30px
+    position: absolute
+    top: 10px
+    right: 10px
+  .container
+    +grid-container
+    .left
+      +grid-width(3)
+    .middle
+      padding-top: 20px
+      +grid-width(15)
+    .right
+      padding-top: 20px
+      +grid-width(6)
+      button
+        margin-left: 30px
+    .left,
+    .middle,
+    .right
+      +grid-unit-base
+  .overlay
+    display: none
+    position: absolute
+    z-index: 1
+    top: 12px
+    left: 15px
+    color: #B3B4B4
+    font-size: 17px
+  ul
+    li
+      float: left
+      padding: 0px
+  .forgot_password
+    padding: 10px 10px 10px 15px
+  h1, h2
+    padding-left: 10px
+    color: #e1e2e3
+    text-shadow: 1px 1px 0 #555555
+  h1.register
+    text-align: center
+    span
+      text-decoration: underline
+  .contentArea
+    margin: 0 auto
+  .lock
+    float: left
+    margin: 17px 0 0
+
+.ribbon
+  height: 52px
+  overflow: hidden
+  .wrapAround, .tab
+    height: 52px
+    overflow: hidden
+  margin: 0 -4px 8px -53px
+  width: 638px
+  .wrapAround
+    float: left
+    width: 52px
+    background: transparent url("/images/ribbon-wrap.png") no-repeat 0 -104px
+  .tab
+    float: left
+    width: 586px
+    background: transparent url("/images/ribbon.png") no-repeat 0 0
+
+.paddedSideBox
+  padding: 20px
+.sideBox
+  margin-top: 10px
+  +radius(10px)
+  background: #f2f2f2
+  border: 1px solid #EBEBEB
+  ul.sideNav
+    padding: 0
+    margin-left: 0
+    margin-bottom: 0
+    li
+      font-size: 1.1em
+      background: none
+      padding: 0
+      margin: 0
+      border-bottom: 1px dotted #DBDBDC
+      &.last
+        border-bottom: none
+    a
+      display: block
+      padding: 0.5em 5px 0.5em 25px
+      margin: 0
+      text-decoration: none
+      text-shadow: 0px 1px 0px #F9FBFC
+    &.currentPage
+      background: transparent url("/images/side-navigation-active.gif") no-repeat 0 0
+    &.currentPage	a
+      color: #2C2C2C
+      border-bottom: 1px solid #fff
+    &.currentPage a
+      &:link, &:visited, &:hover, &:active
+        color: #2C2C2C
+        border-bottom: 1px solid #fff
+
+/* featured content
+
+.featuredContent
+  margin: 0 0 1.5em
+
+.featuredItem
+  clear: left
+  margin: 0 0 1.5em
+
+.featuredImg
+  margin-right: 15px
+  float: left
+  img
+    width: 148px
+
+/* quote
+
+.quote
+  width: 273px
+  background: transparent url("/images/quote-small-repeat.gif") repeat-y 0 0
+  .quoteBox-1
+    padding: 17px 0 0
+    background: transparent url("/images/quote-small-top.gif") no-repeat 0 0
+    .quoteBox-2
+      padding: 0 0 24px
+      background: transparent url("/images/quote-small-bottom.gif") no-repeat 0 100%
+  p
+    min-height: 25px
+    font-style: italic
+    font-size: 1.1em
+    line-height: 1.7
+    color: #000
+    padding: 0 22px 1.2em
+    margin: 0
+
+.quoteAuthor
+  padding: 0 0 1em 22px
+  p
+    &.name
+      font-weight: bold
+      font-size: 1.1em
+      color: #000
+      margin: 0
+    &.details
+      font-size: 0.9em
+      font-style: italic
+
+
+/* blog post
+
+.blogPostSummary, .blogPostContent
+  margin: 0 10px 1.5em 0
+
+.blogPostImage
+  a
+    margin: 0 0 1em
+  img
+    width: 556px
+
+.blogPostSummary p, .blogPostContent p
+  line-height: 1.5em
+
+/* portfolio page
+
+.portfolio
+  margin-left: -31px
+
+/* .two-thirds .portfolio { width:630px; } stupid IE (version 7 only)
+
+.portfolio-item
+  float: left
+  width: 275px
+  margin: 0 0 22px 31px
+  h4, p
+    margin: 0 0 .65em
+    padding: 0
+
+.portfolio-image
+  width: 261px
+  height: 174px
+  /*border: 1px solid #C6C6C6;
+
+.portfolio-description
+  clear: left
+  height: 110px
+  padding: 8px
+  overflow: hidden
+
+/* contact
+
+#CommentForm
+  fieldset legend
+    display: none
+  div
+    margin-bottom: 1.5em
+  .textInput
+    width: 325px
+    margin: 0
+  textarea
+    width: 325px
+    margin: 0
+    height: 150px
+  input.error, textarea.error
+    background-color: #ffc
+    border-color: #EF7E58
+  label.error
+    display: block
+    color: #f33
+    font: bold 10px Verdana, Arial, Helvetica, Garuda, sans-serif
+    line-height: 1em
+    /* required for negative margins to work fully
+    margin: 0.2em 0 -1.2em
+    /* negative margins counter act error message space so input fields don't shift
+
+/* space between inputs
+
+/* margins set by containers <div>
+
+/* table styles
+
+table
+  border-collapse: collapse
+  border-spacing: 0
+
+td, th
+  padding: 5px
+
+#FeatureMatrix
+  padding: 25px 0
+  font-size: 12px
+  th
+    &#MatrixItems
+    &.matrixColumn
+      background-color: #e4e4e4
+      text-align: center
+      border-width: 1px 1px 0 1px
+      border-style: solid
+      border-color: #C6C6C6
+  td
+    &.matrixItem, &.matrixOdd, &.matrixEven
+      background-color: #e4e4e4
+      text-align: center
+      border-width: 1px 1px 0 1px
+      border-style: solid
+      border-color: #C6C6C6
+    &.matrixItem
+      font-weight: bold
+    &.matrixEven
+      background-color: #F0EEF9
+    &.matrixOdd
+      background-color: #F9F9F9
+  th h6
+    font-size: 14px
+    font-weight: bold
+    margin-top: 11px
+    padding-bottom: 3px
+  .matrixItem
+    width: 200px
+    padding: 15px 0 15px
+  td
+    width: 150px
+    &.checkMark
+      background-image: url("/images/bullets/check.gif")
+      background-position: center center
+      background-repeat: no-repeat
+    &.last
+      border-bottom: 1px solid #C6C6C6
+
+/* other
+
+div#fancy_overlay
+  background: #2c2c2c
+
+/* overlay color
+
+/* customized
+/* http://www.zurb.com/article/266/super-awesome-buttons-with-css3-and-rgba
+
+.awesome
+  background: #222222 url(/images/alert-overlay.png) repeat-x
+  display: inline-block
+  padding: 5px 10px 6px
+  color: #fff
+  text-decoration: none
+  -moz-border-radius: 5px
+  -webkit-border-radius: 5px
+  -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5)
+  -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5)
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25)
+  position: relative
+  cursor: pointer
+  &:visited
+    background: #222222 url(/images/alert-overlay.png) repeat-x
+    display: inline-block
+    padding: 5px 10px 6px
+    color: #fff
+    text-decoration: none
+    -moz-border-radius: 5px
+    -webkit-border-radius: 5px
+    -moz-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5)
+    -webkit-box-shadow: 0 1px 3px rgba(0, 0, 0, 0.5)
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+    border-bottom: 1px solid rgba(0, 0, 0, 0.25)
+    position: relative
+    cursor: pointer
+
+
+.awesome
+  &:hover
+    background-color: #111
+    color: #fff
+  &:active
+    top: 1px
+
+.small.awesome
+  font-size: 11px
+  &:visited
+    font-size: 11px
+
+.awesome
+  font-size: 13px
+  font-weight: bold
+  line-height: 1
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+  &:visited
+    font-size: 13px
+    font-weight: bold
+    line-height: 1
+    text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+
+medium.awesome, .medium.awesome:visited
+  font-size: 13px
+  font-weight: bold
+  line-height: 1
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.25)
+
+.large.awesome
+  font-size: 14px
+  padding: 8px 14px 9px
+  &:visited
+    font-size: 14px
+    padding: 8px 14px 9px
+
+.green.awesome
+  background-color: #91bd09
+  &:visited
+    background-color: #91bd09
+  &:hover
+    background-color: #749a02
+
+.blue.awesome
+  background-color: #2daebf
+  &:visited
+    background-color: #2daebf
+  &:hover
+    background-color: #007d9a
+
+.red.awesome
+  background-color: #e33100
+  &:visited
+    background-color: #e33100
+  &:hover
+    background-color: #872300
+
+.magenta.awesome
+  background-color: #a9014b
+  &:visited
+    background-color: #a9014b
+  &:hover
+    background-color: #630030
+
+.orange.awesome
+  background-color: #ff5c00
+  &:visited
+    background-color: #ff5c00
+  &:hover
+    background-color: #d45500
+
+.yellow.awesome
+  background-color: #ffb515
+  &:visited
+    background-color: #ffb515
+  &:hover
+    background-color: #fc9200
+
+li
+  list-style: none outside none
+
+
+.clear
+  clear: both
+.hidden
+  display: none !important 
+  visibility: hidden
+
+@import forms.sass
+
+ul.vouches
+  width: 350px
+  height: auto
+  padding: 20px
+  background: #EBEBEB
+  +radius(5px)
+  .term, .from, .grantor
+    float: left
+    line-height: 20px
+  .vouch
+    +radius(7px)
+    color: #ebebeb
+    padding: 7px 20px
+    margin-bottom: 10px
+    height: 22px 
+    width: 200px
+    background: #313030
+    margin-right: 20px
+    font-size: 15px
+    font-weight: bold  
+    position: relative
+    .actions
+      padding: 10px 20px
+      top: -8px
+      right: 0
+      height: 16px 
+      background: gray
+      +radius(0px 5px 5px 0px)
+      position: absolute
+      li
+        float: left
+        padding-left: 3px
+      .pending,
+      .approve,
+      .deny
+        height: 15px
+        width: 15px
+        display: block
+        cursor: pointer
+      .pending
+        background: url("/images/pending.png") no-repeat
+      .approve
+        background: url("/images/approve.png") no-repeat
+      .deny
+        background: url("/images/deny.png") no-repeat
+
+.new_form
+  input[type=text]
+    +radius(5px)
+    height: 20px
+    border: 1px solid #e0e0e0
+    padding: 5px
+    background-color: #ebebeb
+    width: 300px
+    color: #666666
+    float: left
+  input[type=submit]
+    margin-left: 5px
+    +radius(15px)
+    float: left
+    height: 30px
+    padding: 3px 10px 5px 10px
+    font-weight: bold
+    color: #eeeeee
+    background: #3e3e3e
+    border: none
+  ul 
+    position: relative
+  li.suggestions
+    margin: 32px 0
+    position: absolute
+    color: red
+    z-index: 1
+    ul
+      background-color: #F2F2F2
+      border: 1px solid #EBEBEB
+      width: 300px
+      color: #333333
+      li
+        border-bottom: 1px dotted #DBDBDC        
+  .active
+    background: #e0e0e0
+
+.fish
+  float: left
+        
+#main-content.vouches
+  .welcome_message
+    ul
+      float: left
+      li
+        background: #fff
+        +grid-unit-base
+        +grid-width(4)
+        border: 2px solid #ccc
+        height: 80px
+        +radius(7px)
+        padding-top: 10px
+        h3
+          font-size: 15px
+        p
+          color: #444
+          font-size: 11px
+
+.promotions
+  h1
+    border-bottom: 3px solid #efefef
+    margin-bottom: 0
+    padding-left: 20px
+  ul
+    li
+      border-bottom: 1px dotted #9c9c9c
+
+#archetype_vouches
+  display: none
+  ul
+    li
+      z-index: 2

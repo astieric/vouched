@@ -1,0 +1,8 @@
+%p
+  %b Name:
+  = @industry.name
+
+= show_to :admin do
+  = link_to 'Edit', edit_industry_path(@industry)
+  \|
+  = link_to 'Back', industries_path

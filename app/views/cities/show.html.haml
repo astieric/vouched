@@ -1,0 +1,14 @@
+%p
+  %b Name:
+  = @city.name
+%p
+  %b Country:
+  = @city.country_id
+%p
+  %b Region:
+  = @city.region_id
+
+= show_to :admin do
+  = link_to 'Edit', edit_city_path(@city)
+  \|
+  = link_to 'Back', cities_path

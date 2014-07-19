@@ -1,0 +1,24 @@
+<p class="notice"><%= notice %></p>
+
+<p>
+  <b>Identity: </b>
+</p>
+
+<% if  user_signed_in? %>
+  <%= link_to "New Vouch", new_identity_vouch_path(@identity, :view => "given") %>
+<% end %>
+
+<p>
+  <b>Vouches: </b>
+<% unless @vouches.empty? %>
+<ul>
+<%- @vouches.sort{|a,b| b[1]<=>a[1]}.each do |v| %>
+	<li><%= "#{v[0]} - #{v[1]}" %></li>
+<%- end %>
+</ul>
+
+
+<% else %>
+  <p>No Vouches yet.</p>
+<% end %>
+</p>

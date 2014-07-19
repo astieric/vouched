@@ -1,0 +1,6 @@
+= semantic_form_for @contact, :html => {:class => "form grid_4"} do |form|
+  = form.inputs do
+    = form.input :name, :label => 'Name'
+    = form.input :email, :label => 'Email'
+    .action
+      = form.commit_button :button_html => { :class => "button button-green"}

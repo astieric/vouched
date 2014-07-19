@@ -1,0 +1,92 @@
+!!!
+%html
+  %head
+    %title= yield_for(:title, "GetVouched.com")
+    / Favorites icon
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+    / Style sheets
+
+    = stylesheet_link_tag "reset"
+    = stylesheet_link_tag "grid"
+    = stylesheet_link_tag "style"
+    = stylesheet_link_tag "messages"
+    = stylesheet_link_tag "forms"
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"
+    = javascript_include_tag "http://cdn.jquerytools.org/1.2.5/all/jquery.tools.min.js"
+    = javascript_include_tag "global"
+    = javascript_include_tag :defaults
+
+    <!--[if lt IE 9]>
+    <script src="/javascripts/html5.js"></script>
+    <script src="/javascripts/PIE.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" media="screen" href="css/ie.css" />
+    <script type="text/javascript" src="/javascripts/ie.js"></script>
+    <![endif]-->
+
+    = csrf_meta_tag
+    %meta{:content => "fpjqsJW-Gf37-QpFHMrmudoZRK1_TwhI742p6ri1jnU", :name => "google-site-verification"}/
+
+
+  %body
+    #wrapper
+      %header
+        %div{:class => "container_8 clearfix"}
+          %h1{:class => "grid_1"}
+            %a{:href => "/"} 
+              %img{:src => "/images/logo_smaller.png"}
+          %form{:class => "grid_3", :action => "/search", :method => "get"}
+            %input{:name => "q", :type => "text", :placeholder => "Search..."}  
+            %input{:type => "submit", :value => "Search", :class => "button button-green"}/
+
+
+          %nav{:class => "grid_4"}
+            %ul{:class => "clearfix"}
+              %li{:class => "action"}
+                %a{:href => "#", :class => "has-popupballoon button button-blue"}
+                  %span{:class => "add"}
+                  New Vouch
+                %div{:class => "popupballoon top"}
+                  %h3 Add new vouch
+                  Who
+                  %input{:type => "text"}
+                  What
+                  %input{:type => "text"}
+                  %button{:class => "button button-green"} Vouch!
+                  %button{:class => "button button-gray close"} Cancel
+              - if user_signed_in?
+                %li
+                  %a{:href => "#"} 
+                    = current_user.username
+                    %span{:class => "arrow-down"}
+                  %ul
+                    %li= link_to 'My Vouches', user_vouches_path(current_user)
+                    %li= link_to 'My Contacts', contacts_path
+                    %li= link_to 'My Identities', identities_path
+                    %li= link_to 'My Account', edit_user_registration_path
+                    %li= link_to "Sign out", destroy_user_session_path
+              = show_to :admin do
+                %li
+                  = link_to 'Administrator', home_path
+                  %ul
+                    %li= link_to 'Companies', admin_companies_path
+                    %li= link_to 'Countries', admin_countries_path
+                    %li= link_to 'Industries', admin_industries_path
+                    %li= link_to 'List Types', admin_list_types_path
+                    %li= link_to 'Schools', admin_schools_path
+
+
+      %section
+        %div{:class => "container_8 clearfix"}
+          = render :partial => "pages/sidebar"
+
+          / Main Section
+          %section{:class => "main-section grid_7"}
+            = yield
+          / Main Section End
+        #push
+
+    = render :partial => "pages/footer"

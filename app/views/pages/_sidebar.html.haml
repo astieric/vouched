@@ -1,0 +1,12 @@
+/ Sidebar
+%aside{:class => "grid_1"}
+  %nav{:class => "global"}
+    %ul{:class => "clearfix"}
+      %li{:class=> controller.action_name == "home" ? "active" : ""}= link_to 'Dashboard', "/home", :class => "nav-icon icon-house"
+      %li= link_to 'Latest Activity', "#", :class => "nav-icon icon-time"
+      %li{:class=> controller_name == "jobs" ? "active" : ""}= link_to 'Jobs', jobs_path, :class => "nav-icon icon-job"
+      %li{:class=> controller_name == "vouches" ? "active" : ""}= link_to raw("Vouches <span>#{Vouch.where(:requester_id => current_user.id).where(:status_id => "confirmed").count}</span>".html_safe), user_vouches_path(current_user), :class => "nav-icon icon-vouch"
+      %li{:class=> controller_name == "contacts" ? "active" : ""}= link_to raw("Contacts <span>#{current_user.contacts.count}</span>".html_safe), contacts_path, :class => "nav-icon icon-book"
+      %li{:class=> controller_name == "identities" ? "active" : ""}= link_to raw("Identities <span>#{current_user.identities.count}</span>".html_safe), identities_path, :class => "nav-icon icon-identity"
+      %li{:class=> controller_name == "messages" ? "active" : ""}= link_to raw("Messages <span>#{MessageRecipient.includes(:message).where("receiver_id = '#{current_user.id}' AND message_recipients.hidden_at IS NULL AND messages.state = 'sent'").count}</span>".html_safe), messages_path, :class => "nav-icon icon-message"
+/ Sidebar End

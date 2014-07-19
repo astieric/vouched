@@ -1,0 +1,56 @@
+.main-content.grid_4.alpha
+  %header
+    %ul.action-buttons.clearfix.fr
+      %li
+        %a{:href => new_contact_path, :class => "button button-gray no-text current", :title => "New Contact" } New Contact<span class="add"></span>
+      %li
+        %a{:href => "#", :class => "button button-gray no-text current", :title => "View as a List", :onclick => "$(this).addClass('current').parent().siblings().find('a').removeClass('current');$('#contacts').removeClass('grid-view').addClass('list-view');return false;" } List View<span class="view-list"></span>
+      %li
+        %a{:href => "#", :class => "button button-gray no-text", :title => "View as a Grid", :onclick => "$(this).addClass('current').parent().siblings().find('a').removeClass('current');$('#contacts').removeClass('list-view').addClass('grid-view');return false;" } Grid View<span class="view-grid"></span>
+    .view-switcher
+      %h2 
+        = @contact_type
+        <a href="#">&darr;</a>
+      %ul
+        %li
+          %a{:href => "/contacts/?contact_type=All%20Contacts"} All Contacts
+        %li
+          %a{:href => "/contacts/?contact_type=All%20Users"} All Users
+        %li
+          %a{:href => "/contacts/?contact_type=All%20Identities"} All Identities
+        %li.separator
+        %li Recently vouched...
+        %li.separator
+        %li
+          %a{:href => "/contacts/?contact_type=Recent%20Users"} Users
+        %li
+          %a{:href => "/contacts/?contact_type=Recent%20Identities"} Identities
+      
+  %section
+    %ul#contacts.listing.list-view.clearfix
+      - @contacts.each do |contact|
+        %li.contact.clearfix
+          .avatar= image_tag contact.identity.picture, :size => "48x48"
+          = link_to '&raquo;', preview_identity_path(contact.identity), :class => "more"
+
+          %span.timestamp= time_ago_in_words(contact.updated_at)
+          %a.name{:href => "#"}= contact.name
+          = link_to contact.email, identity_vouches_url(contact.identity_id)
+          .entry-meta
+            = link_to_edit  edit_contact_path(contact)
+            = link_to_destroy contact
+
+    = will_paginate @contacts
+    %br
+
+
+.preview-pane.grid_3.omega
+  .content
+    %h3 
+      Preview Pane
+    %p This is the preview pane. Click on the more button on an item to view more information.
+    .message.info
+      %h3 Helpful Tips
+      <img src="/images/lightbulb_32.png" class="fl" />
+      %p Click on the arrows to filter your contacts.
+  .preview

@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b Title:
+  = @employment.title
+%p
+  %b Summary:
+  = @employment.summary
+%p
+  %b Start year:
+  = @employment.start_year
+%p
+  %b Start month:
+  = @employment.start_month
+%p
+  %b End year:
+  = @employment.end_year
+%p
+  %b End month:
+  = @employment.end_month
+%p
+  %b Is current:
+  = @employment.is_current
+%p
+  %b Company Name:
+  = @employment.company_name
+
+= link_to 'Edit', edit_employment_path(@employment)
+\|
+= link_to 'Back', employments_path

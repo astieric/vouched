@@ -1,0 +1,25 @@
+%h1 Listing schools
+
+%table
+  %tr
+    %th Name
+    %th Website
+    %th Country
+    %th Region
+    %th
+    %th
+    %th
+
+  - @schools.each do |school|
+    %tr
+      %td= school.name
+      %td= school.website
+      %td= school.country_id
+      %td= school.region_id
+      %td= link_to 'Show', schools_path(school)
+      %td= link_to 'Edit', edit_school_path(school)
+      %td= link_to 'Destroy', schools_path(school), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New school', new_school_path

@@ -1,0 +1,15 @@
+%h2.headline
+  %strong
+    New Vouch for #{parent.name}
+
+.new_form
+  = semantic_form_remote_for(Vouch.new, :url => polymorphic_path([parent,Vouch.new])) do |f|
+    = f.semantic_errors
+    = render :partial => "vouches/form_child", :locals => { :f => f, :inject_vars => { :form_id => "new_vouch", :input_name => "vouch[vouches_requested][term_name]" } }
+    .clear
+    %br/
+    %li
+      %ul.vouches#vouches
+    %li
+      = f.submit
+    .clear

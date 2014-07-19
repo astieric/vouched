@@ -1,0 +1,11 @@
+.main-content.grid_7.alpha
+  %header
+    %ul.action-buttons.clearfix.fr
+      %li
+        %a{:href => new_contact_path, :class => "button button-gray no-text current", :title => "New Contact" } New Contact<span class="add"></span>
+    %h2 Importing Contacts
+
+  %section
+    %h3= "Your #{@type} contacts will be imported soon."
+    = link_to 'Back to all contacts', contacts_path
+

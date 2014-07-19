@@ -1,0 +1,45 @@
+%h1 Listing companies
+
+%table
+  %tr
+    %th Jigsawid
+    %th Name
+    %th Website
+    %th Phone
+    %th Address
+    %th City name
+    %th State
+    %th Zip
+    %th Country name
+    %th Industry
+    %th Subindustry
+    %th City
+    %th Region
+    %th Country
+    %th
+    %th
+    %th
+
+  - @companies.each do |company|
+    %tr
+      %td= company.jigsawid
+      %td= company.name
+      %td= company.website
+      %td= company.phone
+      %td= company.address
+      %td= company.city_name
+      %td= company.state
+      %td= company.zip
+      %td= company.country_name
+      %td= company.industry_id
+      %td= company.subindustry_id
+      %td= company.city_id
+      %td= company.region_id
+      %td= company.country_id
+      %td= link_to 'Show', company
+      %td= link_to 'Edit', edit_company_path(company)
+      %td= link_to 'Destroy', company, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New company', new_company_path

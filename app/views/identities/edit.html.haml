@@ -1,0 +1,7 @@
+.main-content.grid_7.alpha
+  %header
+    %h2 Editing Identity #{ image_tag "/images/3rdparty/#{@identity.provider.name}_32.png", :size => "32x32" } #{@identity.handle}
+
+  %section
+    = render 'form'
+

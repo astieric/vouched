@@ -1,0 +1,22 @@
+%h2.headline
+  %strong
+    Request Vouches in just 2 steps! 
+%h3
+  Specify keywords
+.new_form
+  = semantic_form_remote_for(Vouch.new, :url => polymorphic_path([parent,Vouch.new])) do |f|
+    = f.semantic_errors
+    = render :partial => "vouches/form_child", :locals => { :f => f, :inject_vars => { :form_id => "new_vouch", :input_name => "vouch[vouches_requested][term_name]" } }
+    .clear
+    %br/
+    %li
+      %ul.vouches
+    .clear
+    %h4
+      Choose request method:
+    %ul
+      %li
+        twitter
+      %li
+        e-mail
+    = f.submit "Submit!"

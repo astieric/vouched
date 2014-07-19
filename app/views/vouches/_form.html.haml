@@ -1,0 +1,6 @@
+= semantic_form_for(resource, :url => user_vouches_url ) do |f|
+  = f.semantic_errors
+  = hidden_field_tag :view, params[:view]
+  = f.semantic_fields_for(:terms, Term.new) do |t|
+    = t.input :name
+  = f.submit

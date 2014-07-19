@@ -1,0 +1,34 @@
+source :rubygems
+
+gem 'thin'
+gem 'pg'
+gem 'activerecord' , '3.0.5'
+gem 'actionpack'
+gem 'bunny'
+
+group :service do
+  gem 'sinatra'
+  gem 'yajl-ruby'
+  gem 'pr_geohash'
+  gem 'redis'
+  gem 'neography'
+  gem 'httparty'
+
+  # 3rd Party APIs
+  gem 'fbgraph'
+  gem 'twitter',   :git => 'http://github.com/jnunemaker/twitter.git'
+  gem 'linkedin'
+  gem 'nokogiri'
+  gem 'oauth', :git => 'http://github.com/pelle/oauth.git'
+  gem 'oauth-plugin', :git => 'http://github.com/pelle/oauth-plugin.git' , :branch => 'rails3'
+  gem 'portablecontacts'
+
+  # UUID
+  gem 'uuidtools'
+
+end
+
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+end

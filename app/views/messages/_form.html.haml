@@ -1,0 +1,9 @@
+= semantic_form_for @message, :html => {:class => "form grid_6"} do |form|
+  = form.inputs do
+    = form.input :to, :label => 'To' if @action.nil? 
+    = form.input :to, :label => 'To', :input_html => { :value => @message.to.to_a.collect{|user| user.username}.join(",")} unless @action.nil? 
+    = form.input :subject, :label => 'Subject', :as => :string
+    = form.input :body, :label => 'Body', :as => :text, :input_html => {:cols => 100, :rows => 10, :width => "50%"}
+
+    .action
+      = form.commit_button :button_html => { :class => "button button-green"}

@@ -1,0 +1,98 @@
+!!!
+%html
+  %head
+    %title= yield_for(:title, "GetVouched.com")
+    / Favorites icon
+    %link{:href => "/favicon.ico", :rel => "shortcut icon"}/
+    / Style sheets
+
+    = stylesheet_link_tag "reset"
+    = stylesheet_link_tag "grid"
+    = stylesheet_link_tag "style"
+    = stylesheet_link_tag "messages"
+    = stylesheet_link_tag "forms"
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jquery/1.5.0/jquery.min.js"
+    = javascript_include_tag "https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.9/jquery-ui.min.js"
+    = javascript_include_tag "http://cdn.jquerytools.org/1.2.5/all/jquery.tools.min.js"
+    = javascript_include_tag "global"
+    = javascript_include_tag :defaults
+
+    <!--[if lt IE 9]>
+    <script src="/javascripts/html5.js"></script>
+    <script src="/javascripts/PIE.js"></script>
+    <![endif]-->
+
+    <!--[if lte IE 9]>
+    <link rel="stylesheet" media="screen" href="css/ie.css" />
+    <script type="text/javascript" src="/javascripts/ie.js"></script>
+    <![endif]-->
+
+    = csrf_meta_tag
+    %meta{:content => "fpjqsJW-Gf37-QpFHMrmudoZRK1_TwhI742p6ri1jnU", :name => "google-site-verification"}/
+
+
+  %body
+    #wrapper
+      %header
+        %div{:class => "container_8 clearfix"}
+          %h1{:class => "grid_1"}
+            %img{:src => "/images/logo_smaller.png"}
+
+          %form{:class => "grid_3", :action => "/search", :method => "get"}
+            %input{:name => "q", :type => "text", :placeholder => "Search..."}  
+            %input{:type => "submit", :value => "Search", :class => "button button-green"}/
+
+          %nav{:class => "grid_4"}
+            %ul{:class => "clearfix"}
+              %li{:class => "action"}
+                %a{:href => "#", :class => "has-popupballoon button button-blue"}
+                  %span{:class => "accept"}
+                  Sign In
+                %div{:class => "popupballoon top"}
+                  %h3 Sign In
+                  = semantic_form_for 'user', :url => "/users/login", :html => { :id => "user_login" } do |f|
+                    %label Username:
+                    = f.input :username, :label => false 
+                    %label Password:
+                    = f.input :password, :label => false, :input_html => { :class => "string required", :size => 26 }
+                    %br
+                    <div class="action">
+                    <button class="button button-gray" type="submit"><span class="accept"></span>OK</button>
+                    <button class="button button-gray close" type="reset">Cancel</button>                                     
+                    </div>
+                    %br
+                    = f.input :remember_me, :as => :boolean, :required => false
+                  %br
+                  %a{:href => "/users/password/new", :style =>"padding: 0 0px;"}
+                    <button class="button button-gray"><span class="help"></span>Forgot your password?</button>
+              %li{:class => "action"}
+                %a{:href => "#", :class => "has-popupballoon button button-blue"}
+                  %span{:class => "accept"}
+                  Sign Up
+                %div{:class => "popupballoon top"}
+                  %h3 Sign Up
+                  = semantic_form_for 'user', :url => '/users' do |f|
+                    %label Username:
+                    = f.input :username, :label => false 
+                    %label E-Mail:
+                    = f.input :email, :label => false 
+                    %label Password:
+                    = f.input :password, :label => false, :input_html => { :class => "string required", :size => 26 }
+                    %label Confirm Password:
+                    = f.input :password_confirmation, :label => false, :input_html => { :class => "string required", :size => 26 }
+                    %br
+                    <div class="action">
+                    <button class="button button-gray" type="submit"><span class="accept"></span>OK</button>
+                    <button class="button button-gray close" type="reset">Cancel</button>                                     
+                    </div>
+                    %br
+
+      %section
+        %div{:class => "container_8 clearfix"}
+          / Main Section
+          %section{:class => "grid_8"}
+            = yield
+          / Main Section End
+        .push
+
+    = render :partial => "pages/footer"

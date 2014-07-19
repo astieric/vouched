@@ -1,0 +1,164 @@
+Copyright (C) 2010 Eric Astier
+
+
+Setup Instructions
+===========================
+change config/database.yml and create database
+rake db:migrate
+rake db:seed (jruby -J-Xmx1G -S rake db:seed)
+
+Testing
+===========================
+rake db:test:clone
+rspec spec (to run all tests)
+rspec rspec spec/models/user_spec.rb (to run specific tests)
+
+rake rcqa (to run everything)
+rake rcqa:test (tests and coverage)
+rake rcqa:flog (just flog - the most tortured code)
+rake rcqa:flay (Just flay - analyzes code for structural similarities)
+
+If you want jobs then:
+rake jobcentral:onedownload (this will take a while, like an hour or two)
+rake jobcentral:oneimport
+
+If you want to be able to Search then:
+rake sunspot:solr:reindex
+
+
+Used Gems
+===========================
+
+# Formtastic # 
+- Github: http://github.com/justinfrench/formtastic
+- RDoc: http://rdoc.info/projects/justinfrench/formtastic
+
+# Haml # 
+- GitHub: http://github.com/nex3/haml
+- RDoc: http://docs.rdocul.us/haml/master/index.html
+
+I've created a POC for Haml  (app/views/users/edit.html.haml), and will rewrite it to Formtastic for you to sense the difference. Its Really handy. 
+
+# Devise #
+- Github: http://github.com/plataformatec/devise 
+- RDoc: http://rdoc.info/projects/plataformatec/devise
+
+# ACL9 #
+- Github: http://github.com/be9/acl9
+- RDoc: http://rdoc.info/github/be9/acl9
+
+# FBGraph#
+- Github: http://github.com/nsanta/fbgraph
+- RDoc: http://rdoc.info/github/nsanta/fbgraph
+
+# Twitter #
+- Github: http://github.com/jnunemaker/twitter
+- RDoc: http://rdoc.info/gems/twitter
+
+As you can see from the User model creation, we're using:
+1. database_authenticatable - encrypts and stores a password in the database to validate the authenticity of an user while signing in. The authentication can be done both through POST requests or HTTP Basic Authentication.
+2. recoverable - resets the user password and sends reset instructions.
+3. rememberable - manages generating and clearing a token for remembering the user from a saved cookie.
+4. trackable - tracks sign in count, timestamps and IP address.
+5. token_authenticatable - signs in an user based on an authentication token (also known as “single access token”). The token can be given both through query string or HTTP Basic Authentication.
+
+# Sunspot # 
+- Based on Solr: http://lucene.apache.org/solr/
+- GitHub: http://github.com/outoftime/sunspot_rails 
+- RDoc: http://outoftime.github.com/sunspot/rails/docs/index.html
+
+# GeoHash/PR_Geohash (GH causing conflicts with sunpot) #
+- A temporary solution to geo searching in solr
+- GitHub: https://github.com/davetroy/geohash
+- Explanation: http://blog.websolr.com/post/1336392145/spatial-search-in-sunspot
+- Usage http://outoftime.github.com/sunspot/docs/classes/Sunspot/DSL/RestrictionWithNear.html#M000116
+
+So far the only thing I found that's used is searchable (http://outoftime.github.com/sunspot/rails/docs/index.html), as an example, in create_identities.
+
+# Neo4jr-social #
+- Based on Neo4j-rest: 
+- Githhub: http://github.com/mdeiters/neo4jr-social
+- API doc: http://components.neo4j.org/neo4j-rest/
+
+# Factory_girl"
+- GitHub: http://github.com/thoughtbot/factory_girl
+- RDoc: http://rdoc.info/projects/thoughtbot/factory_girl
+
+# RSpec #
+- GitHub: http://github.com/dchelimsky/rspec/
+- RDoc: http://rspec.rubyforge.org/rspec/1.1.9/
+
+# Forgery #
+- GitHub: http://github.com/sevenwire/forgery
+- RDoc: http://sevenwire.github.com/forgery/
+
+# Paper Trail #
+- GitHub: http://github.com/lailsonbm/paper_trail
+- ReadMe: http://github.com/airblade/paper_trail/blob/master/README.md
+- RDic: http://sevenwire.github.com/forgery/
+
+# ActiveRecord- Import #
+- GitHub: http://github.com/zdennis/activerecord-import
+- wiki: http://wiki.github.com/zdennis/activerecord-import/
+
+# LibXML-JRuby/Ruby
+- GitHub: http://github.com/dylanvaughn/libxml-jruby
+- RDoc: http://libxml.rubyforge.org/rdoc/index.html 
+- Note: The JRuby port is out of date, but we are not using new functionality.  
+        We may want to contribute by updating the jruby version if we do end up needing the SAX parser.
+
+# Acts as List
+- GitHub: http://github.com/augustl/acts_as_list
+- RDoc: http://rdoc.info/projects/rails/acts_as_list
+
+# Rails Code QA
+- GitHub: https://github.com/nathanhumbert/rails_code_qa
+- RDoc: http://rdoc.info/gems/rails_code_qa/0.4.1/frames
+
+Troubleshooting
+===========================
+
+# Could not find ruby-debug-base-0.10.3.2-java in any of the sources
+wget http://rubyforge.org/frs/download.php/70304/ruby-debug-base-0.10.3.2-java.gem
+gem install ruby-debug-base-0.10.3.2-java.gem
+rm -f ruby-debug-base-0.10.3.2-java.gem
+gem install --ignore-dependencies ruby-debug
+
+Required gems:
+gem install json-jruby
+gem install jruby-openssl
+gem install libxml-jruby
+
+Data
+===========================
+
+Extracting data from PG
+
+psql getvouched
+\o /home/eric/websites/dev.getvouched.com/countries.csv
+select * from countries;
+\o /home/eric/websites/dev.getvouched.com/regions.csv
+select * from regions;
+\o /home/eric/websites/dev.getvouched.com/cities.csv
+select * from cities;
+
+\o /home/eric/websites/dev.getvouched.com/gource.txt
+SELECT created_at, grantor, CASE WHEN the_rank = 1 THEN 'A' ELSE 'M' END AS action, substring(requester from 1 for 1) || '/' || requester
+FROM (
+SELECT date_part('epoch', date_trunc('second', V.created_at)) AS created_at, G.username AS grantor,  R.username AS requester, rank() OVER (PARTITION BY R.username ORDER BY V.created_at) AS the_rank
+FROM vouches AS V
+INNER JOIN users AS G ON V.grantor_id = G.id
+INNER JOIN terms AS T ON V.term_id = T.id
+INNER JOIN users AS R ON V.requester_id = R.id
+) AS BASE 
+ORDER BY created_at, the_rank;
+
+CI Server launch etc
+===========================
+Server itself is located on getvouched.com (http://localhost:8111/)
+In order to run it, simply run 
+
+   * ssh -L8112:localhost:8111 getvouched.com -p30000
+
+Port 8111 will get routed to 8112 on your local machine.
+

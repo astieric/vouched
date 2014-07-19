@@ -1,0 +1,6 @@
+= semantic_form_for @identity, :html => {:class => "form grid_6"} do |form|
+  = form.inputs do
+    = form.input :name, :label => 'Name'
+    = form.input :nickname, :label => 'Nick Name'
+    .action
+      = form.commit_button :button_html => { :class => "button button-green"}

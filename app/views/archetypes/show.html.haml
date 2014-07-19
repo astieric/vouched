@@ -1,0 +1,26 @@
+%h2= @archetype.name
+= inject_js "archetype.show"
+%p
+  %h3 Abstract:
+  %p.abstract
+    = @archetype.abstract
+
+%p
+  %h3 Description:
+  %p.description
+    = @archetype.description
+
+
+- unless resource.vouches_requested.empty?
+  %h3 Terms
+  %ul.vouches
+    - resource.vouches_requested.each do |v|
+      %li.vouch
+        = v.term.name
+    %br
+
+- unless @archetype.applied_lists.empty? 
+  %h3 Related Archetypes:
+  - @archetype.applied_lists.where(:name => "My Related Archetypes").first.resource_lists.each do |ra|
+    %li.related
+      = link_to ra.resource.name, archetype_path(ra.resource)

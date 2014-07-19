@@ -1,0 +1,59 @@
+%h1 Listing Educations
+
+.one-third
+  - @facebook_educations.each do |e|
+    %div
+      %a
+        %div
+          = image_tag "/images/3rdparty/facebook_32.png", :size => "32x32"
+        %div
+          %h3
+            = e.school_name
+          = e.degree
+        %div
+          add education
+
+  - @linked_in_educations.each do |e|
+    %div
+      %a
+        %div
+          = image_tag "/images/3rdparty/linked_in_32.png", :size => "32x32"
+        %div
+          %h3
+            = e.school_name
+          = e.degree
+        %div
+          add education
+
+.two-thirds
+  %table
+    %tr
+      %th School name
+      %th Degree
+      %th Field of study
+      %th Activities
+      %th Start year
+      %th Start month
+      %th End year
+      %th End month
+      %th
+      %th
+      %th
+
+    - @educations.each do |education|
+      %tr
+        %td= education.school_name
+        %td= education.degree
+        %td= education.field_of_study
+        %td= education.activities
+        %td= education.start_year
+        %td= education.start_month
+        %td= education.end_year
+        %td= education.end_month
+        %td= link_to 'Show', education
+        %td= link_to 'Edit', edit_education_path(education)
+        %td= link_to 'Destroy', education, :confirm => 'Are you sure?', :method => :delete
+
+  %br
+
+  = link_to 'New Education', new_education_path

@@ -1,0 +1,59 @@
+%h1 Listing Employments
+
+.one-third
+  - @facebook_employments.each do |e|
+    %div
+      %a
+        %div
+          = image_tag "/images/3rdparty/facebook_32.png", :size => "32x32"
+        %div
+          %h3
+            = e.company_name
+          = e.title
+        %div
+          add employment
+
+  - @linked_in_employments.each do |e|
+    %div
+      %a
+        %div
+          = image_tag "/images/3rdparty/linked_in_32.png", :size => "32x32"
+        %div
+          %h3
+            = e.company_name
+          = e.title
+        %div
+          add employment
+
+.two-thirds
+  %table
+    %tr
+      %th Title
+      %th Summary
+      %th Start year
+      %th Start month
+      %th End year
+      %th End month
+      %th Is current
+      %th Company Name
+      %th
+      %th
+      %th
+
+    - @employments.each do |employment|
+      %tr
+        %td= employment.title
+        %td= employment.summary
+        %td= employment.start_year
+        %td= employment.start_month
+        %td= employment.end_year
+        %td= employment.end_month
+        %td= employment.is_current
+        %td= employment.company_name
+        %td= link_to 'Show', employment
+        %td= link_to 'Edit', edit_employment_path(employment)
+        %td= link_to 'Destroy', employment, :confirm => 'Are you sure?', :method => :delete
+
+  %br
+
+  = link_to 'New Employment', new_employment_path

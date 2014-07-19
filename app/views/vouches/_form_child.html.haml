@@ -1,0 +1,6 @@
+= inject_js "vouch_autocomplete", inject_vars
+.autocomplete
+  = f.semantic_fields_for :vouches_requested, Vouch.new, :hide_id => true do |vouch| 
+    = vouch.input :term_name, :label => false, :input_html => { :autocomplete => "off" }
+  %li.suggestions
+    %ul

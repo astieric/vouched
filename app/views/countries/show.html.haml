@@ -1,0 +1,17 @@
+%p
+  %b Code:
+  = @country.code
+%p
+  %b Shortname:
+  = @country.shortname
+%p
+  %b Fullname:
+  = @country.fullname
+%p
+  %b Isonumber:
+  = @country.isonumber
+
+= show_to :admin do
+  = link_to 'Edit', edit_country_path(@country)
+  \|
+  = link_to 'Back', countries_path

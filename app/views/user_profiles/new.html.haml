@@ -1,0 +1,21 @@
+.new_form
+  = inject_js "user_profile.new"
+  .by_archetype
+    %h1 Tell us what your job title
+    %input#archetype_name{ :type => "text" }
+    %li.suggestions
+      %ul
+  .clear
+  #archetype_vouches
+  .clear
+  .by_term
+    %h1 or start filling up your skills
+    .new_form
+      = semantic_form_for(current_user) do |f|
+        = render :partial => "vouches/form_child", :locals => { :f => f, :inject_vars => { :form_id => "edit_user_#{current_user.id}", :input_name => "user[vouches_requested][term_name]" } }
+        .clear
+        %br/
+        %li
+          %ul.vouches#vouches
+
+

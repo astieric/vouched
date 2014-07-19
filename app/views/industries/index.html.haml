@@ -1,0 +1,20 @@
+%h1 Listing industries
+
+%table
+  %tr
+    %th Name
+    %th
+    %th
+    %th
+
+  - @industries.each do |industry|
+    %tr
+      %td= industry.name
+      %td= link_to 'Show', industries_path(industry)
+      %td= link_to 'Subindustries', industry_subindustries_path(industry)
+      %td= link_to 'Edit', edit_industry_path(industry)
+      %td= link_to 'Destroy', industries_path(industry), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New industry', new_industry_path

@@ -1,0 +1,4 @@
+!= "$('vouch_term_name').set('value',''); "
+!= "Elements.from('#{escape_javascript(render :partial => @vouch, :layout => false)}')[0].inject($$('.vouches')[0], 'top'); "
+!= "$('#{@vouch.id}').highlight('#ddf'); "
+!= "rails.applyEvents($('#{@vouch.id}')); "

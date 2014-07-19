@@ -1,0 +1,55 @@
+.main-content.grid_4.alpha
+  %header
+    %ul.action-buttons.clearfix.fr
+      - if @view_type == "My Jobs" 
+        %li
+          %a{:href => new_job_path, :class => "button button-gray no-text current", :title => "New Job" } New Job<span class="add"></span>
+
+      %li
+        %a{:href => "#", :class => "button button-gray no-text current", :title => "View as a List", :onclick => "$(this).addClass('current').parent().siblings().find('a').removeClass('current');$('#contacts').removeClass('grid-view').addClass('list-view');return false;" } List View<span class="view-list"></span>
+      %li
+        %a{:href => "#", :class => "button button-gray no-text", :title => "View as a Grid", :onclick => "$(this).addClass('current').parent().siblings().find('a').removeClass('current');$('#contacts').removeClass('list-view').addClass('grid-view');return false;" } Grid View<span class="view-grid"></span>
+    .view-switcher
+      %h2 
+        = @view_type
+        <a href="#">&darr;</a>
+      %ul
+        %li
+          %a{:href => "/jobs/?view_type=All%20Jobs"} Find Jobs
+        %li
+          %a{:href => "/jobs/?view_type=Recommended%20Jobs"} Recommended Jobs
+        %li.separator
+        %li Recruiters...
+        %li.separator
+        %li
+          %a{:href => "/jobs/?view_type=My%20Jobs"} My Jobs
+
+
+  %section
+    %ul#jobs.listing.list-view.clearfix
+      - @jobs.each do |job|
+        %li.job.clearfix
+          = link_to '&raquo;', preview_job_path(job), :class => "more"
+
+          %span.timestamp= time_ago_in_words(job.updated_at)
+          %a.name{:href => "#"}= job.title
+          = link_to 'Apply', job.url
+          .entry-meta
+            = #{job.city_name + " " + job.state_code  + " " + job.country_code}
+            - if @view_type == "My Jobs" 
+              = link_to_edit  edit_job_path(job) 
+              = link_to_destroy job if @view_type == "My Jobs" 
+
+    = will_paginate @jobs
+    %br
+
+.preview-pane.grid_3.omega
+  .content
+    %h3 
+      Preview Pane
+    %p This is the preview pane. Click on the more button on an item to view more information.
+    .message.info
+      %h3 Helpful Tips
+      <img src="/images/lightbulb_32.png" class="fl" />
+      %p Click on the arrows to filter your jobs.
+  .preview

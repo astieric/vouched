@@ -1,0 +1,23 @@
+%h1 Listing translations
+
+%table
+  %tr
+    %th Term
+    %th Phrase
+    %th Priority
+    %th
+    %th
+    %th
+
+  - @translations.each do |translation|
+    %tr
+      %td= translation.term_id
+      %td= translation.phrase_id
+      %td= translation.priority
+      %td= link_to 'Show', translation
+      %td= link_to 'Edit', edit_translation_path(translation)
+      %td= link_to 'Destroy', translation, :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New translation', new_translation_path

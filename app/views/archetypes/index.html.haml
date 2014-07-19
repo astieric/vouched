@@ -1,0 +1,13 @@
+%h2 Archetypes
+
+%h3
+  %a{ :href => url_for(:action => :new) }
+    New
+
+- resource.each do |a| 
+  .id
+    %a{ :href => url_for(a) }
+      = a.name 
+      = link_to "Edit", edit_archetype_path(a)
+
+= will_paginate resource

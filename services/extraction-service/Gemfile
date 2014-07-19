@@ -1,0 +1,17 @@
+source :rubygems
+
+gem 'thin'
+gem 'pg'
+gem 'activerecord'
+gem 'actionpack'
+gem 'bunny'
+
+group :service do
+  gem 'sinatra'
+  gem 'yajl-ruby'
+end
+
+group :test do
+  gem 'rspec'
+  gem 'rack-test'
+end

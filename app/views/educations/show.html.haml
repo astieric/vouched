@@ -1,0 +1,30 @@
+%p#notice= notice
+
+%p
+  %b School name:
+  = @education.school_name
+%p
+  %b Degree:
+  = @education.degree
+%p
+  %b Field of study:
+  = @education.field_of_study
+%p
+  %b Activities:
+  = @education.activities
+%p
+  %b Start year:
+  = @education.start_year
+%p
+  %b Start month:
+  = @education.start_month
+%p
+  %b End year:
+  = @education.end_year
+%p
+  %b End month:
+  = @education.end_month
+
+= link_to 'Edit', edit_education_path(@education)
+\|
+= link_to 'Back', educations_path

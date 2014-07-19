@@ -1,0 +1,23 @@
+.two-thirds
+  %h1.headline
+    %strong
+      Create archetype
+  .new_form
+    = semantic_form_for(resource) do |f| 
+      = f.semantic_errors
+      = f.input :name
+      %br/
+      %br/
+      = render :partial => "vouches/form_child", :locals => { :f => f, :inject_vars => { :form_id => "new_archetype", :input_name => "archetype[terms][]" } }
+
+      .clear
+      %br/
+      %h3
+        Archetype Profile
+      %p
+        Start typing things you think fit that archetype, we have a bunch of existing ones, but you may contribute new ones as well!
+      %br/
+      %li
+        %ul.vouches#vouches
+      %li
+        = f.submit

@@ -1,0 +1,3 @@
+!= "Elements.from('#{escape_javascript(render :partial => @vouch, :layout => false) }')[0].replaces($('#{@vouch.id}'));"
+!= "$('#{@vouch.id}').highlight('#ddf'); "
+!= "rails.applyEvents($('#{@vouch.id}')); "

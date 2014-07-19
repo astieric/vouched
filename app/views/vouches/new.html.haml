@@ -1,0 +1,14 @@
+.main
+  - if params[:view] == "requested"
+    %h1.headline
+      %strong
+        Request Vouch from #{parent.name}
+  - else
+    %h1.headline
+      %strong
+        Give a New Vouch to #{parent.name}
+  .hr
+  = semantic_form_for(Vouch.new, :url => polymorphic_path([parent,Vouch.new], :view => params[:view])) do |f|
+    = f.semantic_errors
+    = f.input :term_name, :input_html => { :autocomplete => "off" }
+    = f.submit

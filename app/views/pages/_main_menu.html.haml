@@ -1,0 +1,32 @@
+/ Main Menu Links
+%ul.navigation
+  %li{ :class=> controller_name == "pages" ? "active" : ""}
+    %a{:href => "/" } Home
+  - if user_signed_in?
+    %li{ :class => controller_name == "vouches" ? "active" : ""}
+      = link_to "Vouches", user_vouches_path(current_user, :type => :requested)
+      %ul
+        %li= link_to "My Vouches", user_vouches_path(current_user, :type => :requested)
+        %li= link_to "I Vouched", user_vouches_path(current_user, :type => :granted)
+        %li= link_to "Vouched me", user_vouches_path(current_user, :type => :vouched_me)
+    %li
+      %a{:href => "/archetypes"} Archetypes
+      %ul
+        %li= link_to "List", user_vouches_path(current_user)
+    %li
+      %a{:href => "/contacts"} Contacts
+    %li
+      %a{:href => "/identities"} Identities
+
+.separator
+/ Extra Menu Links
+%ul.navigation
+  = show_to :admin do
+    %li
+      = link_to 'Administrator', home_path
+      %ul
+        %li= link_to 'Companies', admin_companies_path
+        %li= link_to 'Countries', admin_countries_path
+        %li= link_to 'Industries', admin_industries_path
+        %li= link_to 'List Types', admin_list_types_path
+        %li= link_to 'Schools', admin_schools_path

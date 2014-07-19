@@ -1,0 +1,36 @@
+.main-content.grid_4.alpha
+  %header
+    %ul.action-buttons.clearfix.fr
+      %li
+        %a{:href => give_vouch_link, :class => "button button-gray no-text current", :title => "Give New Vouch" } Give New Vouch<span class="vouch"></span>
+      %li
+        %a{:href => request_vouch_link, :class => "button button-gray no-text current", :title => "Request New Vouch" } Request New Vouch<span class="add"></span>
+    .view-switcher
+      %h2
+        = @vouch_type.titleize 
+        <a href="#">&darr;hello</a>
+      %ul
+        %li= vouches_all_vouches_link
+        %li= vouches_received_link
+        %li= vouches_granted_link
+        %li= vouches_requested_link
+        %li= vouches_pending_link
+
+
+  %section
+    %ul#contacts.listing.list-view.clearfix
+      = render :partial => 'vouch', :collection => @vouches
+
+    = will_paginate @vouches
+    %br/
+
+.preview-pane.grid_3.omega
+  .content
+    %h3 
+      Preview Pane
+    %p This is the preview pane. Click on the more button on an item to view more information.
+    .message.info
+      %h3 Helpful Tips
+      <img src="/images/lightbulb_32.png" class="fl" />
+      %p Click on the arrows to filter your vouches.
+  .preview

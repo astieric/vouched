@@ -1,0 +1,10 @@
+= semantic_form_for @job do |form|
+  = form.inputs do
+    = form.input :title, :label => 'Title'
+    = form.input :description, :label => 'Description'
+    = form.input :city_name, :label => 'City Name'
+    = form.input :state_code, :label => 'State Code'
+    = form.input :country_code, :label => 'Country Code'
+    = form.input :url, :label => 'Url'
+    = form.input :employer, :label => 'Employer'
+  = form.buttons

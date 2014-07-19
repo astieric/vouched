@@ -1,0 +1,11 @@
+%p
+  %b Name:
+  = @subindustry.name
+%p
+  %b Industry:
+  = @subindustry.industry_id
+
+= show_to :admin do
+  = link_to 'Edit', edit_industry_subindustry_path(@industry, @subindustry)
+  \|
+  = link_to 'Back', industry_subindustries_path(@industry)

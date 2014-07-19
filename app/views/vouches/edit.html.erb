@@ -1,0 +1,12 @@
+<div class="two-thirds">
+  <!-- Title / Page Headline --> 
+  <h1 class="headline"><strong>Editing Vouch for <%= @parent_name %></strong></h1> 
+  <div class="hr"></div> 
+
+<%= render 'form' %>
+
+<%= link_to 'Show', polymorphic_path([@parent,@vouch]) %> |
+<%= link_to 'Back', polymorphic_path([@parent,Vouch.new]) %>
+</div>
+
+<%= render :partial => 'sidebar' %>

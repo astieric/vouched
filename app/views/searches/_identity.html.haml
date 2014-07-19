@@ -1,0 +1,3 @@
+= image_tag "/images/3rdparty/#{identity.provider.name}_32.png", :size => "32x32"
+= image_tag identity.picture, :size => "48x48"
+= link_to identity.email, identity_vouches_url(identity)

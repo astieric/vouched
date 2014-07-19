@@ -1,0 +1,17 @@
+= semantic_form_for @company do |form|
+  = form.inputs do
+    = form.input :jigsawid, :label => 'Jigsawid'
+    = form.input :name, :label => 'Name'
+    = form.input :website, :label => 'Website'
+    = form.input :phone, :label => 'Phone'
+    = form.input :address, :label => 'Address'
+    = form.input :city_name, :label => 'City Name'
+    = form.input :state, :label => 'State'
+    = form.input :zip, :label => 'Zip'
+    = form.input :country_name, :label => 'Country Name'
+    = form.input :industry, :label => 'Industry'
+    = form.input :subindustry, :label => 'Subindustry'
+    = form.input :city, :label => 'City', :as => :select
+    = form.input :region, :label => 'Region'
+    = form.input :country_id, :label => 'Country', :as => :select, :collection => Country.find(:all, :order=>:shortname).collect{ |c| [c.shortname,c.id]}
+  = form.buttons

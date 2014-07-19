@@ -1,0 +1,80 @@
+$head-bg: #2C2C2C
+$top-indent: 23px
+$hovered-link-color: #ACD373
+$link-color: #555555
+
+=simple_menu_link
+  margin: 0px 10px
+  line-height: 9px
+  height: 13px
+  color: $link-color
+=hovered_menu_link
+  color: #2FA694
+
+ul.navigation
+  font-family: Verdana,"Lucida Sans","Lucida Grande",sans-serif
+  font-size: 12px
+  font-weight: bold
+  *
+    list-style: none
+    margin: 0
+    padding: 0
+  li // top-level li elements
+    padding-bottom: 20px
+    // Simple links inside of the menu
+    a, a:visited
+      +simple_menu_link
+    // Nested menus
+    ul
+      height: 0
+      overflow: hidden
+      z-index: 99
+      top: $top-indent
+      position: absolute
+      width: 10em
+      li
+        padding-bottom: 0
+        width: 100%
+        font-weight: normal
+        font-size: 12px
+        line-height: 12px
+        height: 20px
+        a, a:visited
+          line-height: 20px
+          border-bottom: none
+          color: $link-color
+    //  If we're inside of LI that was hovered
+    &:hover
+      //  Our internal LI shouldn't be hovered
+      li
+        a
+          color: $link-color
+        &:hover
+          background-color: #278C7D
+          a 
+            color: #fff
+
+    // Links inside of hovered menu items
+    &:hover
+      a
+        color: $hovered-link-color
+      ul
+        left: 0
+        top: $top-indent
+          z-index: 99
+    // Ul that's inside of the Li that was hovered (actually gets submenu to show)
+    &.active
+      a
+        color: #acd373
+        border-bottom: 3px solid #acd373
+      ul
+        li
+          a, a:visited
+            line-height: 20px
+            border-bottom: none
+            color: $link-color
+    float: left
+    position: relative
+    background: none
+    li
+      background: $head-bg

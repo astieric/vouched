@@ -1,0 +1,26 @@
+%h1 Listing countries
+
+%table
+  %tr
+    %th Code
+    %th Shortname
+    %th Fullname
+    %th Isonumber
+    %th
+    %th
+    %th
+
+  - @countries.each do |country|
+    %tr
+      %td= country.code
+      %td= country.shortname
+      %td= country.fullname
+      %td= country.isonumber
+      %td= link_to 'Show', country_path(country)
+      %td= link_to 'Regions', country_regions_path(country)
+      %td= link_to 'Edit', edit_country_path(country)
+      %td= link_to 'Destroy', country_path(country), :confirm => 'Are you sure?', :method => :delete
+
+%br
+
+= link_to 'New country', new_country_path

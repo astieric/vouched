@@ -1,0 +1,27 @@
+#main-content
+  / Title / Page Headline
+  %h1.headline
+    %strong
+      Vouch for #{parent.name}
+  .hr
+  .vouch
+    %p#notice= notice
+    %p
+      %b Status:
+      = resource.status
+    %p
+      %b Requested by:
+      = resource.requester.name
+    %p
+      %b Requested from:
+      = resource.grantor.name
+    %p
+      %b Terms:
+      - resource.terms.any? do
+        - resource.terms.each do |term| 
+          .term
+            = term.name
+  = link_to 'Edit', edit_polymorphic_path([parent,resource])
+  |
+  \#{link_to 'Back', polymorphic_path([parent,Vouch.new])}
+= render :partial => 'sidebar'

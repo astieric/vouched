@@ -1,0 +1,83 @@
+.main-content.grid_4.alpha
+  %header
+    %ul.action-buttons.clearfix.fr
+      %li
+        %a{:href => new_message_path, :class => "button button-gray no-text current", :title => "New Message" } New Message<span class="add"></span>
+    .view-switcher
+      %h2
+        = @message_type 
+        <a href="#">&darr;</a>
+      %ul
+        %li
+          %a{:href => "/messages/?message_type=Inbox"} Inbox
+        %li
+          %a{:href => "/messages/?message_type=Drafts"} Drafts
+        %li
+          %a{:href => "/messages/?message_type=Sent"} Sent
+
+
+  %section
+    %ul.listing.list-view.clearfix
+      - case @message_type
+      - when "Inbox"
+        - @messages.each do |message|
+          %li.message.clearfix
+            .avatar= image_tag message.sender.picture, :size => "48x48"
+            = link_to '&raquo;', preview_message_path(message.message.id), :class => "more"
+
+            %span.timestamp= time_ago_in_words(message.message.updated_at)
+            %a.name{:href => "#{user_path(message.sender)}"}= message.sender.username
+            = message.subject
+            .entry-meta
+              = message.body
+              %br
+              = link_to 'Destroy', message.message, :confirm => 'Are you sure?', :method => :delete
+              = link_to 'Reply', new_message_path(:id => message.message_id, :perform => "reply")
+              = link_to 'Reply to All', new_message_path(:id => message.message_id, :perform => "reply_to_all")
+              = link_to 'Forward', new_message_path(:id => message.message_id, :perform => "forward")
+
+      - when "Sent"
+        - @messages.each do |message|
+          %li.message.clearfix
+            .avatar= image_tag message.sender.picture, :size => "48x48"
+            = link_to '&raquo;', preview_message_path(message.id), :class => "more"
+
+            %span.timestamp= time_ago_in_words(message.updated_at)
+            %a.name{:href => "#"}= message.to.map{|x| x.username}.join(",")
+            .entry-meta
+              = message.subject
+              = link_to 'Edit', edit_message_path(message), :style => "z-index:10;"
+              = link_to 'Resume', edit_message_path(message)
+              = link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete
+              = link_to 'Reply', new_message_path(:id => message, :perform => "reply")
+              = link_to 'Reply to All', new_message_path(:id => message, :perform => "reply_to_all")
+              = link_to 'Forward', new_message_path(:id => message, :perform => "forward")
+
+      - when "Drafts"
+        - @messages.each do |message|
+          %li.message.clearfix
+            .avatar= image_tag message.sender.picture, :size => "48x48"
+            = link_to '&raquo;', preview_message_path(message.id), :class => "more"
+
+            %span.timestamp= time_ago_in_words(message.message.updated_at)
+            %a.name{:href => "#"}= message.to.username
+            .entry-meta
+              = message.subject
+              = link_to 'Resume', edit_message_path(message)
+              = link_to 'Destroy', message, :confirm => 'Are you sure?', :method => :delete
+
+    = will_paginate @messages
+    %br
+
+.preview-pane.grid_3.omega
+  .content
+    %h3 
+      Preview Pane
+    %p This is the preview pane. Click on the more button on an item to view more information.
+    .message.info
+      %h3 Helpful Tips
+      <img src="/images/lightbulb_32.png" class="fl" />
+      %p Click on the arrows to filter your messages.
+  .preview
+
+

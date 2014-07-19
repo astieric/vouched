@@ -1,0 +1,13 @@
+%li.vouch.clearfix{:id => vouch.id}
+  = vouch.term.name
+  = link_to '&raquo;', preview_vouch_path(vouch.id, :parent_id => parent.id,  :view => @vouch_type), :class => "more"
+
+  %span.timestamp= time_ago_in_words(vouch.updated_at)
+
+  .entry-meta
+    - unless vouch.is_confirmed?
+      = link_to '', {:controller=>"vouches",  :action => 'update', :id=>vouch, :commit=>"Approve", :html=> { :class => "approve" }}, :remote=> true, :method => 'put', :class => "approve"
+    - unless vouch.is_requested?
+      = link_to '', {:controller=>"vouches",  :action => 'update', :id=>vouch, :commit=>"Pending" }, :remote=> true, :method => 'put', :class => "pending"
+    - unless vouch.is_rejected?
+      = link_to '', {:controller=>"vouches", :action => 'update', :id=>vouch, :commit=>"Deny"},    :remote=> true, :method => 'put', :class => "deny"

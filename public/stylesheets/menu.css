@@ -1,0 +1,30 @@
+/* line 14, ../../app/stylesheets/menu.sass */
+ul.navigation { font-family: Verdana, "Lucida Sans", "Lucida Grande", sans-serif; font-size: 12px; font-weight: bold; }
+/* line 18, ../../app/stylesheets/menu.sass */
+ul.navigation * { list-style: none; margin: 0; padding: 0; }
+/* line 22, ../../app/stylesheets/menu.sass */
+ul.navigation li { padding-bottom: 20px; float: left; position: relative; background: none; }
+/* line 25, ../../app/stylesheets/menu.sass */
+ul.navigation li a, ul.navigation li a:visited { margin: 0px 10px; line-height: 9px; height: 13px; color: #555555; }
+/* line 28, ../../app/stylesheets/menu.sass */
+ul.navigation li ul { height: 0; overflow: hidden; z-index: 99; top: 23px; position: absolute; width: 10em; }
+/* line 35, ../../app/stylesheets/menu.sass */
+ul.navigation li ul li { padding-bottom: 0; width: 100%; font-weight: normal; font-size: 12px; line-height: 12px; height: 20px; }
+/* line 42, ../../app/stylesheets/menu.sass */
+ul.navigation li ul li a, ul.navigation li ul li a:visited { line-height: 20px; border-bottom: none; color: #555555; }
+/* line 50, ../../app/stylesheets/menu.sass */
+ul.navigation li:hover li a { color: #555555; }
+/* line 52, ../../app/stylesheets/menu.sass */
+ul.navigation li:hover li:hover { background-color: #278c7d; }
+/* line 54, ../../app/stylesheets/menu.sass */
+ul.navigation li:hover li:hover a { color: white; }
+/* line 59, ../../app/stylesheets/menu.sass */
+ul.navigation li:hover a { color: #acd373; }
+/* line 61, ../../app/stylesheets/menu.sass */
+ul.navigation li:hover ul { left: 0; top: 23px; top-z-index: 99; }
+/* line 67, ../../app/stylesheets/menu.sass */
+ul.navigation li.active a { color: #acd373; border-bottom: 3px solid #acd373; }
+/* line 72, ../../app/stylesheets/menu.sass */
+ul.navigation li.active ul li a, ul.navigation li.active ul li a:visited { line-height: 20px; border-bottom: none; color: #555555; }
+/* line 79, ../../app/stylesheets/menu.sass */
+ul.navigation li li { background: #2c2c2c; }

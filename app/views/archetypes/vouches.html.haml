@@ -1,0 +1,9 @@
+= inject_js "archetype_vouches"
+- unless resource.vouches_requested.empty?
+  %br
+  %ul.vouches
+    - resource.vouches_requested.limit(5).each do |v|
+      %li.vouch.droppable
+        = v.term.name
+        %input{ :type => "hidden", :value => v.id, :class => "id" }
+    %br

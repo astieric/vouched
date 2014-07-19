@@ -1,0 +1,1 @@
+new Vouched.Moveable($('archetype_vouches'), '.vouch', $('vouches'))
